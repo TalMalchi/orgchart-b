@@ -94,6 +94,10 @@ namespace ariel
         // delete the whole OrgChart
         void delete_chart(Node *n);
 
+      
+        OrgChart &operator=(const OrgChart &other)= default;
+        OrgChart &operator=(OrgChart &&other) noexcept= default;
+        
         //copy constructor
         OrgChart(const OrgChart &other)
         {
@@ -104,17 +108,12 @@ namespace ariel
             }
         }
         //move constructor
-        OrgChart(OrgChart &&other)
+        OrgChart(OrgChart &&other) noexcept
         {
-           this->root = move(other.root);
-           this->root->children = move(other.root->children);
-           other.root = nullptr;
-
+            root = other.root;
+            other.root = nullptr;
         }
-
-
-        //init operator
-        OrgChart &operator=(const OrgChart &other);
+     
 
         friend ostream &operator<<(ostream &os, const OrgChart &org);
 
