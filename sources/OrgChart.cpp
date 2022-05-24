@@ -158,20 +158,7 @@ namespace ariel
         }
         delete n;
     }
-    // OrgChart &OrgChart::operator=(const OrgChart &other)
-    // {
-    //     // delete the current chart and init the new one with the other chart
-    //     if (this != &other)
-    //     {
-    //         delete_chart(root);
-    //         root = new Node(other.root->data, nullptr, other.root->children);
-    //         for (Node *n : other.root->children)
-    //         {
-    //             root->children.push_back(new Node(n->data, root, n->children));
-    //         }
-    //     }
-    //     return *this;
-    // }
+
 
     OrgChart::Iterator &OrgChart::Iterator::operator++()
     {
