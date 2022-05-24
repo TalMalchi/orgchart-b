@@ -6,39 +6,6 @@ using namespace std;
 namespace ariel
 {
 
-    ostream &operator<<(ostream &os, const OrgChart &org)
-    {
-        // pretty print for the OrgChart
-        queue<OrgChart::Node *> my_queue;
-        my_queue.push(org.root);
-        while (!my_queue.empty())
-        {
-            OrgChart::Node *temp = my_queue.front();
-            my_queue.pop();
-            if (temp->children.empty())
-            {
-                // print the parent
-                os << temp->data << ":-------i have no children------\n";
-            }
-            else
-            {
-                os << temp->data << ": ----my child are-----";
-                // print the children
-                for (OrgChart::Node *child : temp->children)
-                {
-
-                    os << child->data << " ";
-                }
-                os << endl;
-                // push the children to the queue
-                for (OrgChart::Node *child : temp->children)
-                {
-                    my_queue.push(child);
-                }
-            }
-        }
-        return os;
-    }
 
     OrgChart &OrgChart::add_root(const string &name)
     {
@@ -289,5 +256,39 @@ namespace ariel
         }
 
         return NULL;
+    }
+
+    ostream &operator<<(ostream &os, const OrgChart &org)
+    {
+        // pretty print for the OrgChart
+        queue<OrgChart::Node *> my_queue;
+        my_queue.push(org.root);
+        while (!my_queue.empty())
+        {
+            OrgChart::Node *temp = my_queue.front();
+            my_queue.pop();
+            if (temp->children.empty())
+            {
+                // print the parent
+                os << temp->data << ":-------i have no children------\n";
+            }
+            else
+            {
+                os << temp->data << ": ----my child are-----";
+                // print the children
+                for (OrgChart::Node *child : temp->children)
+                {
+
+                    os << child->data << " ";
+                }
+                os << endl;
+                // push the children to the queue
+                for (OrgChart::Node *child : temp->children)
+                {
+                    my_queue.push(child);
+                }
+            }
+        }
+        return os;
     }
 }
